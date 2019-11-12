@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>题目信息</title>
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/layui.js}"></script>
+    <script th:src="@{/js/QuestionInfo.js}"></script>
+</head>
+<body>
+<div style="width: 100%">
+    <div class="layui-input-inline">
+<form class="layui-form" >
+<div class="layui-form-item">
+    <label class="layui-form-label">搜索条件</label>
+    <div class="layui-input-inline">
+        <select name="type" id="type">
+            <option value="0">标题</option>
+            <option value="1">题目编号</option>
+        </select>
+    </div>
+    <div class="layui-input-inline">
+        <input type="text" id="content" name="content" lay-verify="" placeholder="请输入搜索的信息" autocomplete="off" class="layui-input">
+    </div>
+    <button class="layui-btn" id="BtnSearchQuestionInfo" type="button"><i class="layui-icon" style="font-size: 18px;color:white;">&#xe615;</i>搜索</button>
+</div>
+</form>
+    </div>
+    <div class="layui-input-inline" style="margin-left: 50px;">
+    <form id="uploadForm" class="layui-form">
+        <div class="layui-upload" >
+            <button type="button" class="layui-btn layui-btn-normal" id="ChooseFile">（点击选择导入数据）只能导入xls和xlsx文件</button>
+            <button type="button" class="layui-btn" id="uploadUserInfoFile"  name="file">导入</button>
+        </div>
+    </form>
+    </div>
+    <div class="layui-input-inline" style="margin-left: 50px;">
+        <a th:href="@{/excel/DownloadImportUserInfoDemo}"><button type="button" class="layui-btn">下载导入模板</button></a>
+        <a th:href="@{/excel/exportUserInfo}"><button type="button" class="layui-btn">导出全部数据</button></a>
+    </div>
+</div>
+<table id="Questiontable" lay-filter="Questiontable"></table>
+<script type="text/html" id="bar">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="TestDate">添加题目测试数据</a>
+</script>
+
+
+</body>
+</html>

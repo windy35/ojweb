@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oj?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: mysql123456
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+#    format-sql: true
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: true  #使用数值timestamp表示日期，true时会忽略date-format
+  devtools:
+    remote:
+      restart:
+        enabled: true
+  thymeleaf:
+    encoding: UTF-8
+    cache: false
+logging:
+  file: target/app.log
+  level:
+    ROOT: INFO
+    com.wen.weboj: INFO
+    com.wen.weboj.dao: WARN
+devtools:
+  restart:
+  #热部署生效
+  enabled: true
+  #设置重启的目录
+  additional-paths: resources/**,static/**,templates/**
+  #该目录下的内容修改不重启
+#  exclude: data/**
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#  type-aliases-package: com.wen.ojweb.model
+#  mapper-locations: classpath:/mapper/*.xml
+#  config-location: classpath:/mybatis-generator.xml

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wen.ojweb.dao.QuestionMapper">
+  <resultMap id="BaseResultMap" type="com.wen.ojweb.model.Question">
+    <id column="QuestionId" jdbcType="INTEGER" property="questionid" />
+    <result column="TimeLimit" jdbcType="REAL" property="timelimit" />
+    <result column="MemoryLimit" jdbcType="REAL" property="memorylimit" />
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="SubmitTime" jdbcType="INTEGER" property="submittime" />
+    <result column="AcceptTime" jdbcType="INTEGER" property="accepttime" />
+    <result column="QuestionSetter" jdbcType="VARCHAR" property="questionsetter" />
+    <result column="Status" jdbcType="BIT" property="status" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wen.ojweb.model.QuestionWithBLOBs">
+    <result column="TopicDescribes" jdbcType="LONGVARCHAR" property="topicdescribes" />
+    <result column="Input" jdbcType="LONGVARCHAR" property="input" />
+    <result column="Output" jdbcType="LONGVARCHAR" property="output" />
+    <result column="SampleInput" jdbcType="LONGVARCHAR" property="sampleinput" />
+    <result column="SampleOutput" jdbcType="LONGVARCHAR" property="sampleoutput" />
+    <result column="Classification" jdbcType="LONGVARCHAR" property="classification" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    QuestionId, TimeLimit, MemoryLimit, Title, SubmitTime, AcceptTime, QuestionSetter, 
+    Status, UpdateTime
+  </sql>
+  <sql id="Blob_Column_List">
+    TopicDescribes, Input, Output, SampleInput, SampleOutput, Classification
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from question
+    where QuestionId = #{questionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from question
+    where QuestionId = #{questionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wen.ojweb.model.QuestionWithBLOBs">
+    insert into question (QuestionId, TimeLimit, MemoryLimit, 
+      Title, SubmitTime, AcceptTime, 
+      QuestionSetter, Status, UpdateTime, 
+      TopicDescribes, Input, Output, 
+      SampleInput, SampleOutput, Classification
+      )
+    values (#{questionid,jdbcType=INTEGER}, #{timelimit,jdbcType=REAL}, #{memorylimit,jdbcType=REAL}, 
+      #{title,jdbcType=VARCHAR}, #{submittime,jdbcType=INTEGER}, #{accepttime,jdbcType=INTEGER}, 
+      #{questionsetter,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{topicdescribes,jdbcType=LONGVARCHAR}, #{input,jdbcType=LONGVARCHAR}, #{output,jdbcType=LONGVARCHAR}, 
+      #{sampleinput,jdbcType=LONGVARCHAR}, #{sampleoutput,jdbcType=LONGVARCHAR}, #{classification,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="questionid" parameterType="com.wen.ojweb.model.QuestionWithBLOBs">
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="questionid != null">
+        QuestionId,
+      </if>
+      <if test="timelimit != null">
+        TimeLimit,
+      </if>
+      <if test="memorylimit != null">
+        MemoryLimit,
+      </if>
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="submittime != null">
+        SubmitTime,
+      </if>
+      <if test="accepttime != null">
+        AcceptTime,
+      </if>
+      <if test="questionsetter != null">
+        QuestionSetter,
+      </if>
+      <if test="status != null">
+        Status,
+      </if>
+      <if test="updatetime != null">
+        UpdateTime,
+      </if>
+      <if test="topicdescribes != null">
+        TopicDescribes,
+      </if>
+      <if test="input != null">
+        Input,
+      </if>
+      <if test="output != null">
+        Output,
+      </if>
+      <if test="sampleinput != null">
+        SampleInput,
+      </if>
+      <if test="sampleoutput != null">
+        SampleOutput,
+      </if>
+      <if test="classification != null">
+        Classification,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="questionid != null">
+        #{questionid,jdbcType=INTEGER},
+      </if>
+      <if test="timelimit != null">
+        #{timelimit,jdbcType=REAL},
+      </if>
+      <if test="memorylimit != null">
+        #{memorylimit,jdbcType=REAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="submittime != null">
+        #{submittime,jdbcType=INTEGER},
+      </if>
+      <if test="accepttime != null">
+        #{accepttime,jdbcType=INTEGER},
+      </if>
+      <if test="questionsetter != null">
+        #{questionsetter,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicdescribes != null">
+        #{topicdescribes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="input != null">
+        #{input,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="output != null">
+        #{output,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sampleinput != null">
+        #{sampleinput,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sampleoutput != null">
+        #{sampleoutput,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="classification != null">
+        #{classification,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wen.ojweb.model.QuestionWithBLOBs">
+    update question
+    <set>
+      <if test="timelimit != null">
+        TimeLimit = #{timelimit,jdbcType=REAL},
+      </if>
+      <if test="memorylimit != null">
+        MemoryLimit = #{memorylimit,jdbcType=REAL},
+      </if>
+      <if test="title != null">
+        Title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="submittime != null">
+        SubmitTime = #{submittime,jdbcType=INTEGER},
+      </if>
+      <if test="accepttime != null">
+        AcceptTime = #{accepttime,jdbcType=INTEGER},
+      </if>
+      <if test="questionsetter != null">
+        QuestionSetter = #{questionsetter,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        Status = #{status,jdbcType=BIT},
+      </if>
+      <if test="updatetime != null">
+        UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicdescribes != null">
+        TopicDescribes = #{topicdescribes,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="input != null">
+        Input = #{input,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="output != null">
+        Output = #{output,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sampleinput != null">
+        SampleInput = #{sampleinput,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sampleoutput != null">
+        SampleOutput = #{sampleoutput,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="classification != null">
+        Classification = #{classification,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where QuestionId = #{questionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wen.ojweb.model.QuestionWithBLOBs">
+    update question
+    set TimeLimit = #{timelimit,jdbcType=REAL},
+      MemoryLimit = #{memorylimit,jdbcType=REAL},
+      Title = #{title,jdbcType=VARCHAR},
+      SubmitTime = #{submittime,jdbcType=INTEGER},
+      AcceptTime = #{accepttime,jdbcType=INTEGER},
+      QuestionSetter = #{questionsetter,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=BIT},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP},
+      TopicDescribes = #{topicdescribes,jdbcType=LONGVARCHAR},
+      Input = #{input,jdbcType=LONGVARCHAR},
+      Output = #{output,jdbcType=LONGVARCHAR},
+      SampleInput = #{sampleinput,jdbcType=LONGVARCHAR},
+      SampleOutput = #{sampleoutput,jdbcType=LONGVARCHAR},
+      Classification = #{classification,jdbcType=LONGVARCHAR}
+    where QuestionId = #{questionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wen.ojweb.model.Question">
+    update question
+    set TimeLimit = #{timelimit,jdbcType=REAL},
+      MemoryLimit = #{memorylimit,jdbcType=REAL},
+      Title = #{title,jdbcType=VARCHAR},
+      SubmitTime = #{submittime,jdbcType=INTEGER},
+      AcceptTime = #{accepttime,jdbcType=INTEGER},
+      QuestionSetter = #{questionsetter,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=BIT},
+      UpdateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where QuestionId = #{questionid,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义查询-->
+  <select id="selectByTitle" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  select
+  <include refid="Base_Column_List" />
+  ,
+  <include refid="Blob_Column_List" />
+  from question where title LIKE "%"#{title,jdbcType=VARCHAR}"%"
+</select>
+
+  <select id="selectByQuestionid" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from question where questionid LIKE "%"#{questionid,jdbcType=INTEGER}"%"
+  </select>
+</mapper>

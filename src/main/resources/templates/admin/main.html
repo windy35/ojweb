@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>在线判题网站</title>
+	<link rel="stylesheet" th:href="@{/css/layui.css}">
+	<script th:src="@{/layui.js}"></script>
+	<script th:src="@{/js/AddTabs.js}"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+	<div class="layui-header">
+		<div class="layui-logo">oj后台管理页面</div>
+		<!-- 头部区域（可配合layui已有的水平导航） -->
+		<ul class="layui-nav layui-layout-left">
+			<li class="layui-nav-item"><a href="">菜单一</a></li>
+			<li class="layui-nav-item"><a href="">菜单二</a></li>
+			<li class="layui-nav-item"><a href="">菜单三</a></li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">菜单四</a>
+				<dl class="layui-nav-child">
+					<dd><a href="">测试一</a></dd>
+					<dd><a href="">测试二</a></dd>
+					<dd><a href="">测试三</a></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="layui-nav layui-layout-right">
+			<li class="layui-nav-item">
+				<span style="padding-left:1em;" >用户：<span th:text="${session.user.username}"></span></span>
+				<span style="padding-left:1em;">权限：
+					<span th:if=" ${session.user.role} eq '0'">
+						普通用户
+					</span>
+					<span th:if=" ${session.user.role} eq '1'">
+						管理员
+					</span>
+				</span>
+			</li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">
+					<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+
+				</a>
+				<dl class="layui-nav-child">
+					<dd><a href="">测试一</a></dd>
+					<dd><a href="">测试二</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item"><a th:href="@{/logout}">退出登录</a></li>
+		</ul>
+	</div>
+
+	<div class="layui-side layui-bg-black">
+		<div class="layui-side-scroll">
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree"  lay-filter="test">
+				<li class="layui-nav-item layui-nav-itemed">
+					<a class="" href="javascript:;">信息管理</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:;" data-title="首页" data-type="tabAdd" data-url="/admin/index"  data-id="0" class="site-tab-active">首页</a></dd>
+						<dd><a href="javascript:;" data-title="用户信息信息"data-type="tabAdd" data-url="/admin/info/userInfo"  data-id="1" class="site-tab-active">用户信息信息</a></dd>
+						<dd><a href="javascript:;" data-title="题目信息管理"data-type="tabAdd" data-url="/admin/info/questionInfo"  data-id="2" class="site-tab-active">题目信息管理</a></dd>
+						<dd><a href="javascript:;" data-title="题目信息管理"data-type="tabAdd" data-url="/admin/info/questionInfo"  data-id="3" class="site-tab-active">题目信息管理</a></dd>
+						<dd><a href="">超链接</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">测试一</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:;" class="site-tab-active">测试</a></dd>
+						<dd><a href="">超链接</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item"><a href="">测试一</a></li>
+				<li class="layui-nav-item"><a href="">测试二</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class="layui-tab" lay-filter="LayuiTab" lay-allowclose="true" style="margin-left: 200px;">
+			<ul class="layui-tab-title">
+				<li lay-id="0" class="layui-this">
+					首页
+				</li>
+			</ul>
+			<ul class="rightmenu" style="display: none;position: absolute;">
+				<li data-type="closethis">测试一</li>
+				<li data-type="closeall">测试二</li>
+			</ul>
+			<div class="layui-tab-content">
+		</div>
+	<!--<div class="layui-body">-->
+	<!--</div>-->
+	<div class="layui-footer">
+		<!-- 底部固定区域 -->
+		© 2019 在线判题系统
+	</div>
+</div>
+</body>
+</html>

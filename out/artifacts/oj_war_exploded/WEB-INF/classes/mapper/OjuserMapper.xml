@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wen.ojweb.dao.OjuserMapper">
+  <resultMap id="BaseResultMap" type="com.wen.ojweb.model.Ojuser">
+    <id column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="NickName" jdbcType="VARCHAR" property="nickname" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="School" jdbcType="VARCHAR" property="school" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+    <result column="sex" jdbcType="BIT" property="sex" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wen.ojweb.model.Ojuser">
+    <result column="Introduce" jdbcType="LONGVARCHAR" property="introduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UserName, NickName, Password, School, Email, role, sex
+  </sql>
+  <sql id="Blob_Column_List">
+    Introduce
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ojuser
+    where UserName = #{username,jdbcType=VARCHAR}
+  </select>
+  <!--分页查询-->
+  <select id="selectAllFY" parameterType="INTEGER" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ojuser
+    LIMIT #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ojuser
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ojuser
+    where UserName = #{username,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wen.ojweb.model.Ojuser">
+    insert into ojuser (UserName, NickName, Password, 
+      School, Email, role, 
+      sex, Introduce)
+    values (#{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
+      #{sex,jdbcType=BIT}, #{introduce,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wen.ojweb.model.Ojuser">
+    insert into ojuser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="nickname != null">
+        NickName,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="school != null">
+        School,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="introduce != null">
+        Introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wen.ojweb.model.Ojuser">
+    update ojuser
+    <set>
+      <if test="nickname != null">
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        School = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="introduce != null">
+        Introduce = #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where UserName = #{username,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wen.ojweb.model.Ojuser">
+    update ojuser
+    set NickName = #{nickname,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      School = #{school,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=BIT},
+      Introduce = #{introduce,jdbcType=LONGVARCHAR}
+    where UserName = #{username,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wen.ojweb.model.Ojuser">
+    update ojuser
+    set NickName = #{nickname,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      School = #{school,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=BIT}
+    where UserName = #{username,jdbcType=VARCHAR}
+  </update>
+
+
+  <!--自定义查询-->
+  <select id="selectBySex" parameterType="BOOLEAN" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ojuser
+    where sex = #{sex,jdbcType=BIT}
+  </select>
+
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ojuser where UserName LIKE "%"#{username,jdbcType=VARCHAR}"%"
+  </select>
+</mapper>

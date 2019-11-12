@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+    <script th:src="@{/layui.js}"></script>
+    <script>
+        //JavaScript代码区域
+        layui.use('element', function(){
+            var element = layui.element;
+
+        });
+    </script>
+    <script th:src="@{js/global.js}"></script>
+</head>
+<body>
+<div class="layui-tab layui-tab-card site-demo-button" style="position: relative;">
+    <ul class="layui-nav layui-nav-tree layui-nav-side">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">默认展开</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a data-url="a" data-id="11" data-title="选项a" href="#" class="site-demo-active" data-type="tabAdd">选项a</a>
+                </dd>
+                <dd>
+                    <a href="#" data-url="b" data-title="选项b"  data-id="22" class="site-demo-active" data-type="tabAdd">选项b</a>
+                </dd>
+                <dd>
+                    <a href="">跳转</a>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd>
+                    <a href="">移动模块</a>
+                </dd>
+                <dd>
+                    <a href="">后台模版</a>
+                </dd>
+                <dd>
+                    <a href="">电商平台</a>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="#" data-url="c" data-title="选项c"  data-id="33" class="site-demo-active" data-type="tabAdd">产品c</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="">大数据</a>
+        </li>
+    </ul>
+
+    <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="margin-left: 200px;">
+        <ul class="layui-tab-title">
+        </ul>
+        <ul class="rightmenu" style="display: none;position: absolute;">
+            <li data-type="closethis">关闭当前</li>
+            <li data-type="closeall">关闭所有</li>
+        </ul>
+        <div class="layui-tab-content">
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

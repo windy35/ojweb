@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>返回登录页面</title>
+</head>
+<body>
+<span id="text"></span>
+<a href="javascript:countDown"></a>秒后自动跳转到登录界面……
+<script>
+    var curWwwPath=window.document.location.href;
+    //获取主机地址之后的目录，如： myproj/view/my
+    var pathName=window.document.location.pathname;
+    var pos=curWwwPath.indexOf(pathName);
+    //获取主机地址，如： http://localhost:8080
+    var localhostPaht=curWwwPath.substring(0,pos);
+    function countDown(secs){
+        text.innerText=secs;
+        if(--secs>0)
+            setTimeout("countDown("+secs+")",1000);
+        else
+            window.location.href=localhostPaht+"/";
+    }
+    countDown(5);
+</script>
+</body>
+</html>

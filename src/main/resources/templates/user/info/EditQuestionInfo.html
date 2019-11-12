@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>修改题目界面</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layui.css}"  media="all" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/global.css}" />
+	<script type="text/javascript" th:src="@{/js/jquery.js}" charset="utf-8"></script>
+	<script type="text/javascript" th:src="@{/layui.js}" charset="utf-8"></script>
+	<script type="text/javascript" th:src="@{/js/EditQuestionInfo.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-anim layui-anim-up" >
+	<form class="layui-form" id="editform">
+		<div class="layui-form-item">
+			<center><i class="layui-icon layui-icon-rate" style="font-size: 30px; color: #FF5722;">修改题目界面</i></center>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				标题：
+			</label>
+			<div class="layui-input-block">
+				<input type="hidden" name="questionid" id="questionid" autocomplete="off" class="layui-input" th:value="${questionInfo.questionid}">
+				<input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" th:value="${questionInfo.title}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				时间限制：
+			</label>
+			<div class="layui-input-inline shortText">
+				<input type="text" name="timelimit" required  lay-verify="required" placeholder="请输入时间限制" autocomplete="off" class="layui-input" th:value="${questionInfo.timelimit}">
+			</div>
+			<div class="layui-form-mid layui-word-aux"><span style="color: #FF5722;">秒</span></div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				内存限制：
+			</label>
+			<div class="layui-input-inline shortText">
+				<input type="text" name="memorylimit" required  lay-verify="required" placeholder="请输入内存限制" autocomplete="off" class="layui-input" th:value="${questionInfo.memorylimit}">
+			</div>
+			<div class="layui-form-mid layui-word-aux"><span style="color: #FF5722;">MB</span></div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				题目描述：
+			</label>
+			<div class="layui-input-block">
+				<textarea name="topicdescribes" placeholder="请输入题目描述" class="layui-textarea" th:value="${questionInfo.topicdescribes}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				输入：
+			</label>
+			<div class="layui-input-block">
+				<textarea name="input" placeholder="请输入输入数据信息" class="layui-textarea"  th:value="${questionInfo.input}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				输出：
+			</label>
+			<div class="layui-input-block">
+				<textarea name="output" placeholder="请输入输出数据信息" class="layui-textarea" th:value="${questionInfo.output}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				样例输入：
+			</label>
+			<div class="layui-input-block">
+				<textarea name="sampleinput" placeholder="输入样例" class="layui-textarea" th:value="${questionInfo.sampleinput}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				样例输出：
+			</label>
+			<div class="layui-input-block">
+				<textarea name="sampleoutput" placeholder="输出样例" class="layui-textarea" th:value="${questionInfo.sampleoutput}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label font1">
+				分类：
+			</label>
+			<div class="layui-input-block">
+				<input name="classification" placeholder="请输入题目分类（中间使用空格隔开）" class="layui-input" type="input" th:value="${questionInfo.classification}"></input>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<!--<button class="layui-btn" lay-submit lay-filter="alert">修改</button>-->
+				<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>

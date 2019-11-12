@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>登陆界面</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/layui.css}"  media="all" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/register_login.css}" />
+	<script type="text/javascript" th:src="@{js/jquery.js}" charset="utf-8"></script>
+	<script type="text/javascript" th:src="@{/layui.js}" charset="utf-8"></script>
+	<script type="text/javascript" th:src="@{/js/login.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-carousel carousel_mask" id="carousel">
+	<div carousel-item>
+		<div class="carousel_div1"></div>
+		<div class="carousel_div2"></div>
+		<div class="carousel_div3"></div>
+	</div>
+<div class=" login layui-anim layui-anim-up">
+	<form class="layui-form" th:action="@{/login}" method="post">
+		<div class="layui-form-item">
+			<center><i class="layui-icon layui-icon-rate" style="font-size: 30px; color: #FF5722;">登陆界面</i></center>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><i class="layui-icon layui-icon-username" style="font-size: 20px; color: #FF5722;"></i></label>
+			<div class="layui-input-block">
+				<input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"><i class="layui-icon layui-icon-password" style="font-size: 20px; color: #FF5722;"></i></label>
+			<div class="layui-input-inline">
+				<input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="login" type="submit" p>登陆</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				<span style="color: #FF5722;">没有账号？点击<a th:href="@{/registerPage}" style="color: #FF5722;">注册</a></span>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</body>
+</html>
